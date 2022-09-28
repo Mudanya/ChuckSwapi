@@ -1,0 +1,19 @@
+h3{
+    color: #1976d2;
+    font-size: 1.3rem;
+}
+.card {
+
+}
+
+.card-body {
+    box-sizing: border-box;
+    width: 15rem;
+    height: 8rem;
+    background: #1976d2;
+    padding: 1rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    border-radius: 20% 0 30% 0;
+}
