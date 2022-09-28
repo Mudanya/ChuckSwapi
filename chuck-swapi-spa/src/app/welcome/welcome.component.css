@@ -1,19 +1,38 @@
 h3{
     color: #1976d2;
-    font-size: 1.3rem;
+    font-size: 2.5rem;
 }
-.card {
+p {
+  font-size: 1.5rem;
+  line-height: 1.2;
 
 }
 
 .card-body {
     box-sizing: border-box;
-    width: 15rem;
-    height: 8rem;
+    width: 20vw;
+    height: 15vw;
     background: #1976d2;
     padding: 1rem;
     color: #fff;
     display: flex;
     align-items: center;
     border-radius: 20% 0 30% 0;
+}
+.card {
+  transition: all 400ms ease;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translate(3vw,-1.5vh);
+}
+.card:hover ~ h3 {
+  translate: (0,-2.5vh);
+  color: red
+
+}
+.grid {
+  display:grid;
+  place-items: center;
+  height: calc(100vh - 40px);
 }

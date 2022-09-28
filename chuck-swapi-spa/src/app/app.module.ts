@@ -13,6 +13,8 @@ import { RoutingModule } from './routing/routing.module';
 import { SearchComponent } from './search/search.component'
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list'
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatProgressSpinnerModule,
     RoutingModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatInputModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
