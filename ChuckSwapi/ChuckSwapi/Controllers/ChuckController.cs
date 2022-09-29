@@ -1,4 +1,5 @@
-﻿using ChuckSwapi.Services;
+﻿using ChuckSwapi.Entities.RequestFeatures;
+using ChuckSwapi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,10 +15,10 @@ namespace ChuckSwapi.Controllers
         {
             this.service = service;
         }
-        [HttpGet(Name = "categories")]
-        public async Task<IActionResult> GetCategory()
+        [HttpGet("categories")]
+        public async Task<IActionResult> GetCategory([FromQuery] RequestParam request)
         {
-            var categories = await service.GetCategories();
+            var categories = await service.GetCategories(request);
             return Ok(categories);
         }
     }

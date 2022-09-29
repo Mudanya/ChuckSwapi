@@ -1,4 +1,5 @@
-﻿using ChuckSwapi.Entities.Models;
+﻿using ChuckSwapi.Entities.Configurations;
+using ChuckSwapi.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChuckSwapi.Entities
@@ -11,6 +12,7 @@ namespace ChuckSwapi.Entities
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
             builder.Entity<People>()
                 .HasMany(p => p.Films)
                 .WithOne(p => p.People)
@@ -46,6 +48,13 @@ namespace ChuckSwapi.Entities
                 .HasOne(f => f.People)
                 .WithMany(f => f.Vehicles)
                 .HasForeignKey(f => f.PeopleId);
+
+            builder.ApplyConfiguration(new CategoryTypeConfiguration());
+            builder.ApplyConfiguration(new PeopleConfigurationType());
+            builder.ApplyConfiguration(new FilmConfigurationType());
+            builder.ApplyConfiguration(new VehicleConfigurationType());
+            builder.ApplyConfiguration(new SpeciesTypeConfiguration());
+            builder.ApplyConfiguration(new StarshipTypeConfiguration());
                 
         }
         public DbSet<People> People { get; set; }

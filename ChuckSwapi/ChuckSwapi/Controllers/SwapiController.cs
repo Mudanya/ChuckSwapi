@@ -1,4 +1,5 @@
-﻿using ChuckSwapi.Services;
+﻿using ChuckSwapi.Entities.RequestFeatures;
+using ChuckSwapi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,9 +17,9 @@ namespace ChuckSwapi.Controllers
         }
 
         [HttpGet("people")]
-        public async Task<IActionResult> GetPeople()
+        public async Task<IActionResult> GetPeople([FromQuery] RequestParam request)
         {
-            var people = await service.GetPeople();
+            var people = await service.GetPeople(request);
             return Ok(people);
         }
     }

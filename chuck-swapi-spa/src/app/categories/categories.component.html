@@ -1,1 +1,6 @@
-<app-category></app-category>
+<div class="categories">
+    <div *ngFor="let cat of categories" >
+    <app-category [category]="cat"></app-category>
+    
+    </div>
+</div>

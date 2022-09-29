@@ -1,5 +1,7 @@
 ﻿using ChuckSwapi.Entities;
 using ChuckSwapi.Entities.Dtos;
+using ChuckSwapi.Entities.RequestFeatures;
+using ChuckSwapi.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChuckSwapi.Services
@@ -12,7 +14,13 @@ namespace ChuckSwapi.Services
         {
             this.context = context;
         }
-        public async Task<List<string>> GetCategories()
-            => await context.Categories.Select(v => v.Name).ToListAsync();
+        public async Task<PagedList<string>> GetCategories(RequestParam request)
+        { 
+            var categories = await context.Categories
+            .SearchCategory(request.Query)
+            .Select(v => v.Name).ToListAsync();
+            return PagedList<string>
+                .ToPagedList(categories,request.PageNumber,request.PageSize,api:"/chuck/categories");
+        }
     }
 }

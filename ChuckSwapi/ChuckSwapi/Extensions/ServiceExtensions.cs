@@ -18,6 +18,7 @@ namespace ChuckSwapi.Extensions
                options.AddPolicy("CorsPolicy", builder =>
                {
                    builder.WithOrigins("http://localhost:4200");
+                   //builder.AllowAnyOrigin();
                    builder.AllowAnyMethod();
                    builder.AllowAnyHeader();
                })
@@ -27,6 +28,6 @@ namespace ChuckSwapi.Extensions
         public static void ConfigurePeopleEndPoint(this IServiceCollection services, IConfiguration configuration)
             => services.AddHttpClient<PeopleApiService>(a => a.BaseAddress = new Uri(configuration["PeopleApiEndpoint"]));
         public static void ConfigureCategoryEndPoint(this IServiceCollection services, IConfiguration configuration)
-            => services.AddHttpClient<PeopleApiService>(a => a.BaseAddress = new Uri(configuration["CategoryApiEndpoint"]));
+            => services.AddHttpClient<CategoryApiService>(a => a.BaseAddress = new Uri(configuration["CategoryApiEndpoint"]));
     }
 }

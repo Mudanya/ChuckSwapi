@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from '../models/category';
+import { ApiService } from '../services/api.service';
 import { SpinnerService } from '../services/spinner.service';
 
 @Component({
@@ -7,11 +9,19 @@ import { SpinnerService } from '../services/spinner.service';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-
-  constructor(public spinner: SpinnerService) { }
+  categories:Category[] = []
+  category?:Category
+  constructor(public spinner: SpinnerService, private apiService:ApiService) { }
 
   ngOnInit(): void {
-    this.spinner.start()
+    
+    this.apiService.getCategories().subscribe({
+      next: data => {
+        this.categories = data
+        this.spinner.start()
+      },
+      error: err => console.log(err)
+    })
   }
 
 }
