@@ -13,7 +13,6 @@ export class SpinnerService {
   }
 
   public set active(v: boolean) {
-    this._active = v;
     this.status.next(v);
   }
   

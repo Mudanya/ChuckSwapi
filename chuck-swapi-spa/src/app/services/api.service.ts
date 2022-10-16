@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs'
+import {Observable, Subject} from 'rxjs'
 import { Category } from '../models/category';
 import { People } from '../models/people';
 import { SearchResults } from '../models/search-results';
@@ -9,7 +9,8 @@ import { SearchResults } from '../models/search-results';
 })
 
 export class ApiService {
- apiUrl = "https://localhost:7088/api/"
+ apiUrl = "/api/"
+  isLoading:Subject<boolean> = new Subject<boolean>()
   constructor(private http:HttpClient) { }
 
   getCategories():Observable<Category[]> {

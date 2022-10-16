@@ -5,6 +5,7 @@ import { CategoriesComponent } from '../categories/categories.component';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { PeopleComponent } from '../people/people.component';
 import { SearchComponent } from '../search/search.component';
+import { CategoryComponent } from '../category/category.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,11 @@ const routes: Routes = [
   {
     path: 'categories',
     component:CategoriesComponent
+  }
+  ,
+  {
+    path: 'jokes/random',
+    component:CategoryComponent
   }
   ,
   {

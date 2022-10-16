@@ -1,24 +1,26 @@
-<div *ngIf="active">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Search</mat-label>
-      <input matInput  (change)="searchForm($event)">
-    </mat-form-field>
-  <div class="row">
+<div class="flex">
+    <form class="example-form" [formGroup]="form">
+      <div class="w-span">
+        <mat-form-field appearance="fill" class="example-full-width">
+          <mat-label>Search</mat-label>
+          <input type="text" matInput placeholder="Search" formControlName="search" (keyup)="searchForm()">
+        </mat-form-field>
+      </div>
+    </form>
+  <div class="row" *ngIf="active">
     <div class="col">
+      <h2>People</h2>
       <mat-list>
-        <mat-list-item> People </mat-list-item>
-  
-        <mat-list-item *ngIf="let pep of searchData.people"> {{pep}} </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
+        <mat-list-item *ngFor="let person of searchData?.peopleResults"> {{person.name}} </mat-list-item>
       </mat-list>
     </div>
     <div class="col">
+      <h2>Categories</h2>
       <mat-list>
-        <mat-list-item> Pepper </mat-list-item>
-        <mat-list-item> Salt </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
+        <mat-list-item *ngFor="let cat of searchData?.categoriesResults"> {{cat}} </mat-list-item>
       </mat-list>
     </div>
   </div>
+  <mat-spinner *ngIf='!active && searching'></mat-spinner>
 </div>
 

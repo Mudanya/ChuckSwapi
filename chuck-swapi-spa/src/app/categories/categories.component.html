@@ -1,6 +1,11 @@
-<div class="categories">
+<div class="categories" *ngIf="active">
     <div *ngFor="let cat of categories" >
-    <app-category [category]="cat"></app-category>
-    
+        <div class="card-container">
+            <a class="card"  rel="noopener" routerLink="/jokes/random" [queryParams]="{category:cat}">
+              <span>{{cat}}</span>
+            </a>
+          </div>
     </div>
 </div>
+
+<mat-spinner *ngIf="!active"></mat-spinner>

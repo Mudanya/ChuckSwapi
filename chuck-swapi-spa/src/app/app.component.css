@@ -39,6 +39,7 @@
     color: white;
     font-weight: 600;
     padding-inline: 1rem;
+    z-index:3
   }
 
   .toolbar img {
@@ -157,3 +158,5 @@
  {
   color: #ccc !important
  }
+
+ 

@@ -25,13 +25,26 @@
         <td mat-cell *matCellDef="let element"> {{element.height}} </td>
       </ng-container>
   
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="eyeColor">
+        <th mat-header-cell *matHeaderCellDef> Eye Color </th>
+        <td mat-cell *matCellDef="let element"> {{element.eyeColor}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="hairColor">
+        <th mat-header-cell *matHeaderCellDef> Hair Color </th>
+        <td mat-cell *matCellDef="let element"> {{element.hairColor}} </td>
+      </ng-container>
+  
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   
     <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                    showFirstLastButtons 
-                   aria-label="Select page of periodic elements">
+                   aria-label="select people table">
     </mat-paginator>
   </div>
   
+  <mat-spinner *ngIf="!active"></mat-spinner>

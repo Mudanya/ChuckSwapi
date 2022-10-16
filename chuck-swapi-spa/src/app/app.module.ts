@@ -16,8 +16,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list'
 import {HttpClientModule} from '@angular/common/http'
-import { ApiService } from './services/api.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,9 +38,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatListModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [ApiService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

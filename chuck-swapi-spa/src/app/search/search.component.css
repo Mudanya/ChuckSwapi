@@ -9,3 +9,16 @@ form {
   display: flex;
   justify-content: center;
 }
+
+.example-form {
+  
+  width: 100%;
+}
+.w-span {
+  min-width: 150px;
+  max-width: 250px;
+}
+
+.example-full-width {
+  width: 100%;
+}

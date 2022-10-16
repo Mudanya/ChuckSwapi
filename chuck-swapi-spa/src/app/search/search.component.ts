@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { SpinnerService } from '../services/spinner.service';
 import {SearchResults} from '../models/search-results'
@@ -10,23 +10,25 @@ import {SearchResults} from '../models/search-results'
 })
 export class SearchComponent implements OnInit {
 active = false
+searching =  false
 searchData ?: SearchResults;
-
-  constructor(public spinner: SpinnerService,private apiService : ApiService) { }
+form =  new FormGroup({})
+  constructor(public spinner: SpinnerService,private apiService : ApiService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    this.active = this.spinner.active
-    this.spinner.start()
-    
+    this.apiService.isLoading.subscribe(isLoading => this.active = isLoading )
+    this.form = this.fb.group({
+      search: ['', Validators.required]
+    })
   }
-  searchForm(event:Event) {
-    debugger
-    this.apiService.search((event.target as HTMLInputElement).value).subscribe(
+  searchForm() {
+    this.searching = true
+    this.apiService.search(this.form.value?.search).subscribe(
       {
         next:data=> {
+          this.active = true
            this.searchData = data
-           console.log(data)
-           this.spinner.start()
+           this.apiService.isLoading.next(true)
       },
     error:err=>console.log(err)}
     )

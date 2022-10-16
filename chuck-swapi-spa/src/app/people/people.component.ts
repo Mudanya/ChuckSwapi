@@ -12,9 +12,9 @@ import { People } from '../models/people';
 export class PeopleComponent  implements AfterViewInit, OnInit {
   people:People[] =[]
   active = false
-  displayedColumns: string[] = ['name', 'birthYear', 'mass', 'height'];
+  displayedColumns: string[] = ['name', 'birthYear', 'mass', 'height','eyeColor','hairColor'];
   ELEMENT_DATA: peopleTable[] = [];
-  dataSource !:MatTableDataSource<People>;
+  dataSource  = new MatTableDataSource<People>();
 
   @ViewChild(MatPaginator) paginator?: MatPaginator;
 
@@ -24,13 +24,12 @@ export class PeopleComponent  implements AfterViewInit, OnInit {
   constructor(public spinner: SpinnerService, private apiService:ApiService) { }
 
   ngOnInit(): void {
+    this.apiService.isLoading.subscribe(isLoading => this.active = isLoading)
     this.apiService.getPeople().subscribe({
       next:data=>{
-        debugger
         this.people = data
-        this.dataSource = new MatTableDataSource(data)
-        this.spinner.start()
-        console.log(this.ELEMENT_DATA)
+        this.dataSource.data = data
+        this.apiService.isLoading.next(true)
       },
       error:err=>console.log(err)
     })
@@ -43,4 +42,7 @@ export interface peopleTable {
   birthYear: string;
   height: string;
   mass: string;
+  eyeColor: string,
+  hairColor: string,
+  
 }
